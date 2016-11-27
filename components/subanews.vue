@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .detail_page {
     min-height: 300px;
     margin: 20px 0;
@@ -21,10 +21,9 @@
 }
 
 .detail_content img {
-    width: auto;
-    height: auto;
-    max-width: 90%;
-    max-height: 90%;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
 }
 
 .detail_page, #scu_comment {

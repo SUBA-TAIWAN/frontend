@@ -16,7 +16,7 @@ Vue.config.devtools = false;
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VueCookie);
-Vue.http.options.root = 'http://www.suba.org.tw';
+Vue.http.options.root = 'https://www.suba.org.tw';
 
 const router = new VueRouter({
         hashbang: false,

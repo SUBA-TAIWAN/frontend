@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .page {
     margin-top: 30px;
 }
@@ -83,6 +83,12 @@
 .page table tfoot td:only-child {
     -moz-border-radius: 0 0 6px 6px;
 }
+
+.page .content img {
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
 </style>
 
 <template>
@@ -101,12 +107,7 @@
 </template>
 
 <script>
-//import subabreadcrumb from './subabreadcrumb.vue'
-
 export default {
-    /*components: {
-        subabreadcrumb
-    },*/
     data () {
         return {
             page: {},

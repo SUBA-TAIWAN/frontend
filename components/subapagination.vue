@@ -2,12 +2,15 @@
 a.active {
   text-decoration: underline;
 }
+
 li {
   cursor: pointer;
 }
+
 li.disabled {
   cursor: not-allowed;
 }
+
 li.disabled a{
   color: #ccc;
   cursor: not-allowed;
