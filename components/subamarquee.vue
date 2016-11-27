@@ -28,7 +28,7 @@ ul li {
     position: relative;
     left: auto;
     color: #fff;
-    transition: left 3s ease-in-out;
+    transition: left 4s ease-in-out;
 }
 
 /*#marquee-content:hover {
@@ -62,14 +62,20 @@ export default {
     data () {
         return {
             marquees: [],
-            isMarqueeFetched: false
+            isMarqueeFetched: false,
+            timer: null
         }
     },
     activate (done) {
         this.fetchMarquee(done);
     },
     ready () {
-        this.run(4000);
+        this.timer = this.run(4000);
+    },
+    detached () {
+        if (this.timer) {
+            window.clearInterval(this.timer);
+        }
     },
     methods: {
         fetchMarquee: function (done) {
@@ -92,16 +98,16 @@ export default {
                 now = 0,
                 left = 0;
 
-            window.setInterval(function () {
+            return window.setInterval(function () {
                 var childrenLength = children.length;
-                left -= children[now].clientWidth;
-                    //d = left / time;
-                for (var i=0; i<childrenLength; i++) {
-                    //for (var j=0; j<=-left; j-=d) {
-                    children[i].style.left = left + 'px';
-                    //}
+                
+                if (now > 0) {
+                    left -= now * children[now-1].clientWidth;
                 }
-                if (now < (childrenLength-3)) {
+                for (var i=0; i<childrenLength; i++) {
+                    children[i].style.left = left + 'px';
+                }
+                if (now < (childrenLength-4)) {
                     now += 1;
                 } else {
                     now = 0;
