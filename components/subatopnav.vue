@@ -76,11 +76,8 @@ export default {
                     this.topitems = data.msg.top;
                     this.isTopNavFetched = true;
                     done();
-                } else {
-                    // console.warn('Error in list top menu');
                 }
             }, (error) => {
-                // console.warn('Error in list top menu');
             });
         }
     }

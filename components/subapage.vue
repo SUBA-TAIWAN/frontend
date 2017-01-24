@@ -119,9 +119,7 @@ export default {
             this.$http.get('get/page/'+transition.to.params.title).then((response) => {
                 var data = response.data,
                     title = transition.to.params.title;
-                    //breadcrumb = this.$refs.breadcrumb;
                 if (data.success === true) {
-                    //breadcrumb.links = ;
                     this.page = data.msg;
                     this.isPageFetched = true;
                     this.$dispatch('handleError', false);
@@ -136,11 +134,9 @@ export default {
                     }]);
                 } else {
                     this.$dispatch('handleError', true);
-                    //console.warn('Error in page');
                 }
             }, (error) => {
                 this.$dispatch('handleError', true);
-                //console.warn('Error in page');
             });
         }
     }

@@ -74,13 +74,11 @@ export default {
         this.run();
     },
     // attached () {
-    //     console.log('Attached');
     // },
     destroyed () {
         this.clear();
     },
     // detached () {
-    //     console.log('Detached');
     // },
     // route: {
         // activate () {
