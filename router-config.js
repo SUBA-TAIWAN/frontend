@@ -23,16 +23,9 @@ export function configureRouter (router) {
         '/news/:title': {
             name: 'news',
             component: require('./components/subanews.vue'),
-        },
-        '/donate': {
-            name: 'donate',
-            component: require('./components/subadonate.vue'),
-        },
+        }
     });
     router.beforeEach(function (transition) {
-        // if (window.subaBanner) {
-        //     window.subaBanner.$Destroy();
-        // }
         if (transition.to.params === undefined) {
             transition.abort();
         } else {
@@ -44,11 +37,6 @@ export function configureRouter (router) {
             document.title = transition.to.params.title+' | '+appName;
         } else {
             document.title = appName;
-
-            // if (window.subaBanner !== undefined) {
-            //     window.subaBanner.$UnlistenAll;
-            //     window.subaBanner.$Destroy;
-            // }
         }
         ga('send', 'pageview');
     });

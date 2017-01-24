@@ -86,11 +86,9 @@ export default {
                     }]);
                 } else {
                     this.$dispatch('handleError', true);
-                    // console.warn('Error in story');
                 }
             }, (error) => {
                 this.$dispatch('handleError', true);
-                // console.warn('Error in story');
             });
         }
     },

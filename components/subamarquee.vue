@@ -86,10 +86,8 @@ export default {
                     this.isMarqueeFetched = true;
                     done();
                 } else {
-                    // console.warn('Error in marquee');
                 }
             }, (error) => {
-                // console.warn('Error in marquee');
             });
         },
         run: function (time) {
@@ -113,10 +111,6 @@ export default {
                     now = 0;
                     left = 0;
                 }
-                //window.setTimeout(function () {
-                //  parent.removeChild(reserveChild);
-                   //    parent.appendChild(reserveChild);
-                //}, time);
             }, time);
         }
     }

@@ -80,10 +80,8 @@ export default {
                     if (data.success === true) {
                         this.list = this.cache[now] = data.msg;
                     } else {
-                        // 
                     }
                 }, (error) => {
-                    // 
                 });
             }
         },
@@ -109,7 +107,6 @@ export default {
                     this.count = data.msg;
                 }
             }, (error) => {
-                //
             });
         }
     },

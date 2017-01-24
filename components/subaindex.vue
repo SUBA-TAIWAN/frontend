@@ -225,11 +225,9 @@ export default {
                     this.$dispatch('updateBreadcrumb', []);
                 } else {
                     this.$dispatch('handleError', true);
-                    // concole.warn('Error in story blocks');
                 }
             }, (error) => {
                 this.$dispatch('handleError', true);
-                // console.warn('Error in story blocks');
             });
         }
     }

@@ -99,10 +99,8 @@ export default {
                     this.isMainNavFetched = true;
                     done();
                 } else {
-                    // console.warn('Error in main nav');
                 }
             }, (error) => {
-                // console.warn('Error in main nav');
             });
         },
         toggleDropdown: function (e) {
