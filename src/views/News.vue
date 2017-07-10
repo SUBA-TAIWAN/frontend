@@ -39,7 +39,7 @@
 </style>
 
 <template>
-<div class="detail_page" id="scu-fb" v-show="isNewsFetched">
+<div class="detail_page" id="scu-fb" v-if="isNewsFetched">
   <div class="detail_header">
     <div class="title">{{story.title}}</div>
     <div class="create_time">
@@ -52,9 +52,9 @@
   </div>
   <div class="detail_content" v-html="story.content"></div>
     
-  <div id="scu_comment" class="hidden">
+  <!-- <div id="scu_comment" class="hidden">
     <div class="fb-comments" v-bind:data-href="story.url" data-width="100%" data-numposts="5"></div>
-  </div>
+  </div> -->
 </div>
 </template>
 
@@ -71,14 +71,14 @@ export default {
   },
   methods: {
     fetchNews () {
-      this.$http.get(`/story/${this.$route.to.params.title}`).then((response) => {
+      var title = this.$route.params.title
+
+      this.$http.get(`/story/${title}`).then((response) => {
         var data = response.data
-        var title = this.$route.to.params.title
 
         if (data.success === true) {
           this.story = data.msg
           this.isNewsFetched = true
-          this.$emit('handleError', false)
           this.$emit('updateBreadcrumb', [{
             obj: {
               name: 'news',
@@ -92,8 +92,7 @@ export default {
           this.$emit('handleError', true)
         }
       }, (error) => {
-        this.$emit('handleError', true)
-        throw error
+        this.$emit('handleError', error !== undefined)
       })
     }
   },

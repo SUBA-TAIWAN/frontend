@@ -11,7 +11,9 @@ a.active {
 <template>
 <ol class="breadcrumb" v-if="isShow">
   <li><a href="/index" target="_self">首頁</a></li>
-  <li v-for="link in links"><a v-link="link.obj">{{link.content}}</a></li>
+  <li v-for="link in links">
+    <router-link v-bind:to="link.obj" v-bind:aria-label="link.content">{{link.content}}</router-link>
+  </li>
 </ol>
 </template>
 

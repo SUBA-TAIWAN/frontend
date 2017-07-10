@@ -117,14 +117,14 @@ export default {
   },
   method: {
     fetchPage () {
-      this.$http.get(`/page/${this.$route.to.params.title}`).then((response) => {
+      var title = this.$route.params.title
+
+      this.$http.get(`/page/${title}`).then((response) => {
         var data = response.data
-        var title = this.$route.to.params.title
 
         if (data.success === true) {
           this.page = data.msg
           this.isPageFetched = true
-          this.$emit('handleError', false)
           this.$emit('updateBreadcrumb', [{
             obj: {
               name: 'page',
