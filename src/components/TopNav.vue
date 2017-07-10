@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     fetchTopMenu () {
-      this.$http.get('/get/list/topmenu').then((response) => {
+      this.$http.get('/list/topmenu').then((response) => {
         var data = response.data
 
         if (data.success === true) {

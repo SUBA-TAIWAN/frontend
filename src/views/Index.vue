@@ -173,7 +173,7 @@
 
 <template>
 <div>
-  <!-- <subabanner></subabanner> -->
+  <suba-banner></suba-banner>
   <div class="story-blocks" v-show="isStoryBlocksFetched">
     <div class="story-content">
       <div class="story-block" v-bind:class="storyblock.class" v-for="storyblock in storyblocks">
@@ -196,12 +196,12 @@
 </template>
 
 <script>
-// import subabanner from './subabanner.vue'
+import SubaBanner from '@/components/Banner.vue'
 
 export default {
-  // components: {
-  //     subabanner
-  // },
+  components: {
+    SubaBanner
+  },
   data () {
     return {
       storyblocks: [],
@@ -213,7 +213,7 @@ export default {
   },
   methods: {
     fetchStoryBlocks: function () {
-      this.$http.get('get/storyblocks').then((response) => {
+      this.$http.get('/storyblocks').then((response) => {
         var data = response.data
 
         if (data.success === true) {

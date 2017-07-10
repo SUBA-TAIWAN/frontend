@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     fetchMarquee: function () {
-      this.$http.get('get/list/marquee').then((response) => {
+      this.$http.get('/list/marquee').then((response) => {
         var data = response.data
 
         if (data.success === true) {

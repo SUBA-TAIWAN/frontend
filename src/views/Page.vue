@@ -117,7 +117,7 @@ export default {
   },
   method: {
     fetchPage () {
-      this.$http.get(`/get/page/${this.$route.to.params.title}`).then((response) => {
+      this.$http.get(`/page/${this.$route.to.params.title}`).then((response) => {
         var data = response.data
         var title = this.$route.to.params.title
 

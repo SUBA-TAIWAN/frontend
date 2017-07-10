@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     fetchMainMenu () {
-      this.$http.get('get/list/mainmenu').then((response) => {
+      this.$http.get('/list/mainmenu').then((response) => {
         var data = response.data
 
         if (data.success === true) {

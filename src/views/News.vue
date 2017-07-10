@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     fetchNews () {
-      this.$http.get(`/get/story/${this.$route.to.params.title}`).then((response) => {
+      this.$http.get(`/story/${this.$route.to.params.title}`).then((response) => {
         var data = response.data
         var title = this.$route.to.params.title
 

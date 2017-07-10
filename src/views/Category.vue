@@ -70,7 +70,7 @@ export default {
       this.title = this.$route.to.params.title
       this.fetchPagination()
 
-      this.$http.get(`/get/category/${this.title}/${this.limit}/${this.now}`).then((response) => {
+      this.$http.get(`/category/${this.title}/${this.limit}/${this.now}`).then((response) => {
         var data = response.data
 
         if (data.success === true) {
@@ -94,7 +94,7 @@ export default {
       })
     },
     fetchPagination: function () {
-      this.$http.get(`/get/pagination/${this.title}/${this.limit}`).then((response) => {
+      this.$http.get(`/pagination/${this.title}/${this.limit}`).then((response) => {
         var data = response.data
 
         if (data.success === true) {
