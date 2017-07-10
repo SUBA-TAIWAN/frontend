@@ -224,13 +224,11 @@ export default {
           this.storyblocks = data.msg
           this.isStoryBlocksFetched = true
           this.$emit('handleError', false)
-          // this.$emit('updateBreadcrumb', [])
         } else {
           this.$emit('handleError', true)
         }
       }, (error) => {
-        this.$emit('handleError', true)
-        throw error
+        this.$emit('handleError', error !== undefined)
       })
     }
   },

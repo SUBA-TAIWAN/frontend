@@ -39,7 +39,8 @@
   <suba-mainnav></suba-mainnav>
   <suba-marquee></suba-marquee>
   <suba-breadcrumb v-bind:links="breadcrumbLinks"></suba-breadcrumb>
-  <router-view></router-view>
+  <router-view v-on:handleError="handleError" v-on:updateBreadcrumb="updateBreadcrumb"></router-view>
+  <suba-error v-if="isError"></suba-error>
 </div>
 </template>
 
@@ -47,11 +48,12 @@
 import SubaMainnav from './Mainnav.vue'
 import SubaMarquee from './Marquee.vue'
 import SubaBreadcrumb from './Breadcrumb.vue'
+import SubaError from '@/views/Error.vue'
 
 export default {
   name: 'suba-content',
   components: {
-    SubaMainnav, SubaMarquee, SubaBreadcrumb
+    SubaMainnav, SubaMarquee, SubaBreadcrumb, SubaError
   },
   data () {
     return {
@@ -59,7 +61,7 @@ export default {
       breadcrumbLinks: []
     }
   },
-  events: {
+  methods: {
     handleError (error) {
       this.isError = error
     },
