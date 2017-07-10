@@ -5,6 +5,8 @@ Vue.use(Router)
 
 const Index = resolve => require(['@/views/Index.vue'], resolve)
 
+const Page = resolve => require(['@/views/Page.vue'], resolve)
+
 const Error = resolve => require(['@/views/Error.vue'], resolve)
 
 export default new Router({
@@ -18,6 +20,10 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: Index
+    }, {
+      path: '/page/:title',
+      name: 'page',
+      component: Page
     }, {
       path: '*',
       name: 'Error',
