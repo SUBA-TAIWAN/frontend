@@ -231,9 +231,7 @@ export default {
     }
   },
   watch: {
-    '$route' () {
-      this.fetchStoryBlocks()
-    }
+    '$route': 'fetchStoryBlocks'
   }
 }
 </script>

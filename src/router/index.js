@@ -7,6 +7,8 @@ const Index = resolve => require(['@/views/Index.vue'], resolve)
 
 const Page = resolve => require(['@/views/Page.vue'], resolve)
 
+const Category = resolve => require(['@/views/Category.vue'], resolve)
+
 const Error = resolve => require(['@/views/Error.vue'], resolve)
 
 export default new Router({
@@ -24,6 +26,10 @@ export default new Router({
       path: '/page/:title',
       name: 'page',
       component: Page
+    }, {
+      path: '/category/:title',
+      name: 'category',
+      component: Category
     }, {
       path: '*',
       name: 'Error',

@@ -144,9 +144,7 @@ export default {
     }
   },
   watch: {
-    '$route' () {
-      this.fetchPage()
-    }
+    '$route': 'fetchPage'
   }
 }
 </script>

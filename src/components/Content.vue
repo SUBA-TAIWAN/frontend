@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import SubaMainnav from '@/components/Mainnav.vue'
-import SubaMarquee from '@/components/Marquee.vue'
-import SubaBreadcrumb from '@/components/Breadcrumb.vue'
+import SubaMainnav from './Mainnav.vue'
+import SubaMarquee from './Marquee.vue'
+import SubaBreadcrumb from './Breadcrumb.vue'
 
 export default {
   name: 'suba-content',
