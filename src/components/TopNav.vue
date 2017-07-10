@@ -68,15 +68,15 @@ export default {
   },
   methods: {
     fetchTopMenu () {
-      this.$http.get('/get/list/topmenu').then((res) => {
-        var data = res.data
+      this.$http.get('/get/list/topmenu').then((response) => {
+        var data = response.data
 
         if (data.success === true) {
           this.topitems = data.msg.top
           this.isTopNavFetched = true
         }
-      }).catch((err) => {
-        console.log(err)
+      }).catch((error) => {
+        throw error
       })
     }
   },
