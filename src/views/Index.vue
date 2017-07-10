@@ -177,16 +177,20 @@
   <div class="story-blocks" v-show="isStoryBlocksFetched">
     <div class="story-content">
       <div class="story-block" v-bind:class="storyblock.class" v-for="storyblock in storyblocks">
-        <a v-bind:aria-label="story.title">
+        <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
           <h6 class="block_title" v-bind:class="'heading' + storyblock.order"><span><b v-bind:class="storyblock.icon"></b>{{storyblock.title}}</span></h6>
-        </a>
+        </router-link>
         <ul>
           <li v-for="story in storyblock.list">
-            <a v-bind:aria-label="story.title">{{story.stitle}}</a>
+            <router-link v-bind:to="{name: 'news', params: {title: story.title}}" v-bind:aria-label="story.title">
+              {{story.stitle}}
+            </router-link>
           </li>
         </ul>
         <span class="show-more">
-          <a v-bind:aria-label="story.title">更多</a>
+          <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
+            更多
+          </router-link>
         </span>
       </div>
     </div>
@@ -220,7 +224,7 @@ export default {
           this.storyblocks = data.msg
           this.isStoryBlocksFetched = true
           this.$emit('handleError', false)
-          this.$emit('updateBreadcrumb', [])
+          // this.$emit('updateBreadcrumb', [])
         } else {
           this.$emit('handleError', true)
         }
