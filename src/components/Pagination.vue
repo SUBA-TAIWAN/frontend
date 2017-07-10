@@ -26,7 +26,7 @@ li.disabled a{
       </a>
     </li>
     <li v-for="page in count">
-        <a v-bind:class="{'active': ((page+1) === now)}" v-on:click.stop.prevent="changePage(page+1)">{{ page+1 }}</a>
+        <a v-bind:class="{'active': (page === now)}" v-on:click.stop.prevent="changePage(page)">{{ page }}</a>
     </li>
     <li v-show="count > 1" v-bind:class="{'disabled': now >= count}">
       <a aria-label="Next" v-on:click.stop.prevent="changePage(now+1)" v-on:keyup.left="changePage(now+1)">

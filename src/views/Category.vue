@@ -2,15 +2,17 @@
 
 <template>
 <div>
-  <div class="news-page list-group" v-if="isCategoryFetched"> 
-    <a class="list-group-item" v-bind:aria-label="item.title" target="_self" v-for="item in list" >
+  <div class="news-page list-group" v-if="isCategoryFetched">
+  <template v-for="item in list">
+    <router-link class="list-group-item" v-bind:to="{name: 'news', params: {title: item.title}}" v-bind:aria-label="item.title" target="_self">
       <h6 class="list-group-item-heading>">
         <!--span class="glyphicon glyphicon-th-list"></span-->[{{item.ct}}]-{{item.title}}
       </h6>
       <p class="list-group-item-content"></p>
-    </a>
+    </router-link>
+  </template>
   </div>
-  <suba-pagination v-bind:count="count"></suba-pagination>
+  <suba-pagination v-bind:now="now" v-bind:count="count" v-on:updatePageNow="updatePageNow"></suba-pagination>
 </div>
 </template>
 
@@ -33,41 +35,14 @@ export default {
     }
   },
   created () {
-    this.fetchData()
-  },
-  events: {
-    updatePageNow (now) {
-      var cached = this.cache[now]
-
-      this.$cookie.set(this.title, now, 1)
-
-      if (cached !== undefined) {
-        this.list = cached
-      } else {
-        this.now = now
-        this.$http.get(`/get/category/${this.title}/${this.limit}/${this.now}`).then((response) => {
-          var data = response.data
-
-          if (data.success === true) {
-            this.list = this.cache[now] = data.msg
-          } else {
-          }
-        }, (error) => {
-          this.$emit('handleError', true)
-          throw error
-        })
-      }
-    },
-    updatePageLimit (limit) {}
+    this.fetchCategory()
   },
   methods: {
     fetchCategory () {
-      var now = this.$cookie.get(this.$route.to.params.title)
+      var now = this.$cookie.get(this.$route.params.title)
 
-      if (now !== null) {
-        this.now = now
-      }
-      this.title = this.$route.to.params.title
+      this.now = parseInt(now)
+      this.title = this.$route.params.title
       this.fetchPagination()
 
       this.$http.get(`/category/${this.title}/${this.limit}/${this.now}`).then((response) => {
@@ -85,12 +60,9 @@ export default {
             },
             content: this.title
           }])
-        } else {
-          this.$emit('handleError', true)
         }
       }, (error) => {
-        this.$emit('handleError', true)
-        throw error
+        this.$emit('handleError', error !== undefined)
       })
     },
     fetchPagination: function () {
@@ -101,8 +73,31 @@ export default {
           this.count = data.msg
         }
       }, (error) => {
-        throw error
+        this.$emit('handleError', error !== undefined)
       })
+    },
+    updatePageNow (now) {
+      var cached = this.cache[now]
+
+      this.$cookie.set(this.title, now, 1)
+      this.now = now
+
+      if (cached !== undefined) {
+        this.list = cached
+      } else {
+        this.$http.get(`/category/${this.title}/${this.limit}/${this.now}`).then((response) => {
+          var data = response.data
+
+          if (data.success === true) {
+            this.list = this.cache[now] = data.msg
+          }
+        }, (error) => {
+          this.$emit('handleError', error !== undefined)
+        })
+      }
+    },
+    updatePageLimit (limit) {
+      this.limit = limit
     }
   },
   watch: {
