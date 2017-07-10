@@ -40,21 +40,18 @@
   <suba-marquee></suba-marquee>
   <suba-breadcrumb v-bind:links="breadcrumbLinks"></suba-breadcrumb>
   <router-view></router-view>
-  <!-- <subaerror v-bind:is-error="isError"></subaerror> -->
 </div>
 </template>
 
 <script>
-import Mainnav from '@/components/Mainnav.vue'
-import Marquee from '@/components/Marquee.vue'
-import Breadcrumb from '@/components/Breadcrumb.vue'
-// import subaerror from './subaerror.vue'
+import SubaMainnav from '@/components/Mainnav.vue'
+import SubaMarquee from '@/components/Marquee.vue'
+import SubaBreadcrumb from '@/components/Breadcrumb.vue'
 
 export default {
   name: 'suba-content',
   components: {
-    Mainnav, Marquee, Breadcrumb
-  //     subamainnav, subamarquee, subabreadcrumb, subaerror
+    SubaMainnav, SubaMarquee, SubaBreadcrumb
   },
   data () {
     return {

@@ -48,13 +48,11 @@ a:hover {
 </style>
 
 <template>
-<div id="marquee">  
+<div id="marquee" v-if="isMarqueeFetched">  
   <ul id="marquee-content">
-  <template v-if="isMarqueeFetched">
     <li class="hidden-print" v-for="marquee in marquees">
       <a v-bind:href="marquee.link" v-bind:target="marquee.target" v-bind:aria-label="marquee.content">{{marquee.content}}</a>
     </li>
-  </template>
   </ul>
 </div>
 </template>

@@ -42,14 +42,14 @@
 </style>
 
 <template>
-<nav id="mainnav" class="navbar navbar-default" role="navigation">
+<nav id="mainnav" class="navbar navbar-default" role="navigation" v-if="isMainNavFetched">
   <div class="navbar-header">
     <button  type="button" class="navbar-toggle" v-on:click.prevent="toggleCollapse">
       <span class="sr-only">Toggle navigation</span>
     </button>
   </div>
         
-  <div class="collapse navbar-wrapper" v-bind:class="{'collapse': isCollapse}" v-if="isMainNavFetched" v-on:click="toggleCollapse">
+  <div class="collapse navbar-wrapper" v-bind:class="{'collapse': isCollapse}" v-on:click="toggleCollapse">
       <div class="navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li v-for="mainitem in mainitems">
