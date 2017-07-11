@@ -4,9 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import config from './config'
+import VueCookie from 'vue-cookie'
+
+Vue.use(VueCookie)
 
 Vue.config.productionTip = false
-Vue.prototype.$http = axios
+Vue.prototype.$http = axios.create({
+  baseURL: config.API_BASE_URL
+})
 
 if (!window.ga) {
   require('./social')()

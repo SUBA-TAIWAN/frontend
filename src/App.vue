@@ -12,14 +12,13 @@
 <script>
 import SubaTopnav from '@/components/TopNav.vue'
 import SubaSidebar from '@/components/SideBar.vue'
-// import SubaContent from '@/components/Content.vue'
+import SubaContent from '@/components/Content.vue'
 import SubaFooter from '@/components/Footer.vue'
 
 export default {
   name: 'app',
   components: {
-    SubaTopnav, SubaSidebar, SubaFooter
-    // , SubaContent
+    SubaTopnav, SubaSidebar, SubaFooter, SubaContent
   }
 }
 </script>
