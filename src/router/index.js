@@ -11,6 +11,10 @@ const Category = resolve => require(['@/views/Category.vue'], resolve)
 
 const News = resolve => require(['@/views/News.vue'], resolve)
 
+const Donate = resolve => require(['@/views/Donate.vue'], resolve)
+
+const Res = resolve => require(['@/views/Res.vue'], resolve)
+
 const Error = resolve => require(['@/views/Error.vue'], resolve)
 
 export default new Router({
@@ -36,6 +40,14 @@ export default new Router({
       path: '/news/:title',
       name: 'news',
       component: News
+    }, {
+      path: '/donate',
+      name: 'donate',
+      component: Donate
+    }, {
+      path: '/res',
+      name: 'res',
+      component: Res
     }, {
       path: '*',
       name: 'Error',
