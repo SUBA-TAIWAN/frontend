@@ -348,7 +348,7 @@ export default {
 
         data.append('donation', JSON.stringify(this.donation))
 
-        this.$http.post('v1/donation', data).then((response) => {
+        this.$http.post('/v1/donation', data).then((response) => {
           var data = response.data
 
           if (data.success) {
