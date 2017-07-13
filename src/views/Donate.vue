@@ -114,7 +114,7 @@
             <div class="form-group" v-bind:class="{ 'has-error': errFor.approve}">
                 <div class="checkbox">
                     <label>
-                        <input id="d-approve" type="checkbox" v-model="donation.approve">同意東吳企管文教基金會網站的<a v-link="{name: 'page', params: {title: '隱私權政策'}}">隱私權政策</a>
+                        <input id="d-approve" type="checkbox" v-model="donation.approve">同意東吳企管文教基金會網站的<router-link v-bind:to="{name: 'page', params: {title: '隱私權政策'}}">隱私權政策</router-link>
                     </label>
                     <p class="text-danger small" v-if="errFor.approve"><span class="glyphicon glyphicon-info-sign">{{ errFor.approve }}</span></p>
                 </div>
