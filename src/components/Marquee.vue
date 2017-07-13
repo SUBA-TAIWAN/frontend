@@ -70,9 +70,6 @@ export default {
   created () {
     this.fetchMarquee()
   },
-  ready () {
-    this.timer = this.run(4000)
-  },
   detached () {
     if (this.timer) {
       window.clearInterval(this.timer)
@@ -86,6 +83,9 @@ export default {
         if (data.success === true) {
           this.marquees = data.msg
           this.isMarqueeFetched = true
+          this.$nextTick(function () {
+            this.timer = this.run(4000)
+          })
         }
       }, (error) => {
         throw error

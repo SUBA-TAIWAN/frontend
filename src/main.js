@@ -18,26 +18,24 @@ if (!window.ga) {
   require('./social')()
 }
 
-// const APP_NAME = '財團法人東吳企管文教基金會'
+const APP_NAME = '財團法人東吳企管文教基金會'
 
 // router.beforeEach(function (transition) {
-//   if (transition.to.params === undefined) {
-//     transition.abort()
-//   } else {
-//     transition.next()
-//   }
+//   transition.next()
 // })
 
-// router.afterEach(function (transition) {
-//   if (Object.getOwnPropertyNames(transition.to.params).length !== 0) {
-//     document.title = `${transition.to.params.title} | ${APP_NAME}`
-//   } else {
-//     document.title = APP_NAME
-//   }
-  // if (ga) {
-  //   ga('send', 'pageview')
-  // }
-// })
+router.afterEach(function (transition) {
+  var properties = Object.getOwnPropertyNames(transition.params)
+
+  if (properties.length > 0 && properties.indexOf('title') >= 0) {
+    document.title = `${transition.params.title} | ${APP_NAME}`
+  } else {
+    document.title = APP_NAME
+  }
+  if (window.ga) {
+    window.ga('send', 'pageview')
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

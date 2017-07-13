@@ -41,7 +41,7 @@ export default {
     fetchCategory () {
       var now = this.$cookie.get(this.$route.params.title)
 
-      this.now = parseInt(now)
+      this.now = parseInt(now) || 1
       this.title = this.$route.params.title
       this.fetchPagination()
 
