@@ -11,7 +11,10 @@ Vue.use(VueCookie)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios.create({
-  baseURL: config.API_BASE_URL
+  baseURL: config.API_BASE_URL,
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest'
+  }
 })
 
 if (!window.ga) {
