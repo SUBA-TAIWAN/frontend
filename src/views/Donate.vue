@@ -100,7 +100,7 @@
             </div>
             <div class="form-group" v-bind:class="{ 'has-error': errFor.money}">
                 <label class="control-label required" for="d-money">{{ labels.money }}</label>
-                <input id="d-money" class="form-control" type="number" v-bind:placeholder="labels.money" v-model="donation.money" required>
+                <input id="d-money" class="form-control" type="text" v-bind:placeholder="labels.money" v-model="donation.money" required>
                 <span class="text-danger small" v-if="errFor.money"><span class="glyphicon glyphicon-info-sign">{{ errFor.money }}</span></span>
             </div>
             <div class="form-group" v-bind:class="{ 'has-error': errFor.cardType}">
@@ -188,13 +188,10 @@ export default {
       },
       cardType: [{
         name: '一般',
-        value: 0
-      }, {
-        name: '台灣金融卡',
-        value: 1
+        value: '0'
       }, {
         name: '銀聯卡',
-        value: 2
+        value: '2'
       }],
       order: {
         merID: '',
@@ -307,13 +304,19 @@ export default {
           errFor.invoiceTitle = null
         }
       }
-      if (!this.donation.money) {
+      if (isEmpty(this.donation.money)) {
         errFor.money = '請輸入金額'
       } else {
         if (!isNumeric(this.donation.money)) {
           errFor.money = '金額只能輸入數字'
         } else {
-          errFor.money = null
+          var money = parseInt(this.donation.money)
+
+          if (money <= 0) {
+            errFor.money = '金額必須大於零'
+          } else {
+            errFor.money = null
+          }
         }
       }
       if (isEmpty(this.donation.cardType)) {
@@ -344,11 +347,12 @@ export default {
       this.isButtonLock = true
 
       if (this.validate()) {
+        this.errs = []
         var data = new FormData()
 
         data.append('donation', JSON.stringify(this.donation))
 
-        this.$http.post('/v1/donation', data).then((response) => {
+        this.$http.post('/donation', data).then((response) => {
           var data = response.data
 
           if (data.success) {
@@ -367,22 +371,26 @@ export default {
           var error = response.data
 
           if (error.success && error.success === false) {
-            this.errs.push('表單資料有誤')
-            this.errs.push('請修改後再次傳送')
+            errs = []
+            errs.push('表單資料有誤')
+            errs.push('請修改後再次傳送')
+            this.errs = errs
 
             if (error.errFor) {
               this.errFor = errFor
               return
             }
           } else {
-            this.errs.push('發生錯誤')
+            this.errs = ['發生錯誤']
           }
         }).then(() => {
           this.isButtonLock = false
         })
       } else {
-        this.errs.push('表單資料有誤')
-        this.errs.push('請修改後再次傳送')
+        errs = []
+        errs.push('表單資料有誤')
+        errs.push('請修改後再次傳送')
+        this.errs = errs
         this.isButtonLock = false
       }
     },
