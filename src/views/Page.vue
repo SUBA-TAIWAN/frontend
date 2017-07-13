@@ -115,7 +115,7 @@ export default {
   created () {
     this.fetchPage()
   },
-  method: {
+  methods: {
     fetchPage () {
       var title = this.$route.params.title
 
