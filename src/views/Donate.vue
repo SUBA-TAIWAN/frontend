@@ -40,7 +40,7 @@
         </ul>
     </div>
     <div class="panel-body">
-        <form id="donate-form" class="form-horizontal"  method="POST">
+        <div id="donate-form" class="form-horizontal">
             <div class="form-group" v-bind:class="{ 'has-error': errFor.firstName}">
                 <label class="control-label required" for="d-first-name">{{ labels.firstName }}</label>
                 <input id="d-first-name" class="form-control" type="text" v-bind:placeholder="labels.firstName" v-model="donation.firstName" required>
@@ -122,7 +122,7 @@
             <div class="form-group">
                 <button class="btn btn-primary pull-right" v-bind:class="{ 'disable' : isButtonLock }" v-on:click.prevent="donate">確認</button>
             </div>
-        </form>
+        </div>
         <form id="order-form" v-if="!empty(order)" class="hidden" method="POST" v-bind:action="url.auth">
             <input type="hidden" name="merID" v-model="order.merID">
             <input type="hidden" name="MerchantID" v-model="order.MerchantID">
@@ -412,7 +412,9 @@ export default {
         var form = document.getElementById('order-form')
 
         if (form) {
-          form.submit()
+          this.$nextTick(function () {
+            form.submit()
+          })
         }
       }
     }
