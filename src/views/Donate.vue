@@ -98,6 +98,19 @@
                 <input id="d-invoice-title" class="form-control" type="text" v-bind:placeholder="labels.invoiceTitle" v-model="donation.invoiceTitle" required>
                 <span class="text-danger small" v-if="errFor.invoiceTitle"><span class="glyphicon glyphicon-info-sign">{{ errFor.invoiceTitle }}</span></span>
             </div>
+            <div class="form-group" v-bind:class="{ 'has-error': errFor.purpose}">
+                <label class="control-label required" for="d-purpose">{{ labels.purpose }}</label>
+                <select id="d-purpose" class="form-control" v-model="donation.purpose">
+                    <option value="">請選擇</option>
+                    <option v-for="purp in purpose" v-bind:value="purp.value">{{ purp.name }}</option>
+                </select>
+                <p class="text-danger small" v-if="errFor.purpose"><span class="glyphicon glyphicon-info-sign">{{ errFor.purpose }}</span></p>
+            </div>
+            <div class="form-group" v-bind:class="{ 'has-error': errFor.purposeDetail}">
+                <label class="control-label" for="d-purpose-detail">{{ labels.purposeDetail }}</label>
+                <input id="d-purpose-detail" class="form-control" type="text" v-bind:placeholder="labels.purposeDetail" v-model="donation.purposeDetail">
+                <span class="text-danger small" v-if="errFor.purposeDetail"><span class="glyphicon glyphicon-info-sign">{{ errFor.purposeDetail }}</span></span>
+            </div>
             <div class="form-group" v-bind:class="{ 'has-error': errFor.money}">
                 <label class="control-label required" for="d-money">{{ labels.money }}</label>
                 <input id="d-money" class="form-control" type="text" v-bind:placeholder="labels.money" v-model="donation.money" required>
@@ -168,6 +181,8 @@ export default {
         invoiceAddress: '',
         invoiceTitle: '',
         cardType: '',
+        purpose: '',
+        purposeDetail: '',
         approve: false
       },
       labels: {
@@ -184,7 +199,9 @@ export default {
         sameWithAddress: '同上面地址',
         invoiceAddress: '收據寄送地址',
         invoiceTitle: '收據抬頭',
-        cardType: '卡片類型'
+        cardType: '卡片類型',
+        purpose: '捐助款項用途',
+        purposeDetail: '捐助款項用途說明',
       },
       cardType: [{
         name: '一般',
@@ -192,6 +209,13 @@ export default {
       }, {
         name: '銀聯卡',
         value: '2'
+      }],
+      purpose: [{
+        name: '東吳文教基金會專款',
+        value: '0'
+      }, {
+        name: '東吳企管 EMBA 聯誼會專款',
+        value: '1'
       }],
       order: {
         merID: '',
@@ -303,6 +327,20 @@ export default {
         } else {
           errFor.invoiceTitle = null
         }
+      }
+      if (isEmpty(this.donation.purpose)) {
+        errFor.purpose = '請選擇捐助款項用途'
+      } else {
+        if (!isNumeric(this.donation.purpose) || (this.donation.purpose < 0) || (this.donation.purpose > 1)) {
+          errFor.purpose = '捐助款項用途選擇錯誤'
+        } else {
+          errFor.purpose = null
+        }
+      }
+      if (!isEmpty(this.donation.purposeDetail) && matches(this.donation.purposeDetail, reg)) {
+        errFor.purposeDetail = '捐助款項用途說明含有其他字元'
+      } else {
+        errFor.purposeDetail = null
       }
       if (isEmpty(this.donation.money)) {
         errFor.money = '請輸入金額'
