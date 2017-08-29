@@ -245,7 +245,7 @@ export default {
       isButtonLock: false
     }
   },
-  ready () {
+  mounted () {
     this.$emit('updateBreadcrumb', [{
       obj: {
         name: 'donate'

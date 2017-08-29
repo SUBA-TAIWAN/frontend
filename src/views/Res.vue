@@ -55,7 +55,7 @@ export default {
       return this.donation.msg && this.donation.msg.length > 0
     }
   },
-  ready () {
+  mounted () {
     if (window.donation !== undefined) {
       this.donation = window.donation
     } else {
@@ -64,7 +64,7 @@ export default {
     }
 
     window.setTimeout(function () {
-      this.$route.push({name: 'home'})
+      this.$router.push({name: 'home'})
     }.bind(this), 10000)
   },
   methods: {
