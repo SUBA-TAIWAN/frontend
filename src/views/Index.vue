@@ -50,6 +50,10 @@
     background: url(/img/icon.png) -225px -105px;
 }
 
+.i_house {
+    background: url(/img/icon.png) -155px -35px;
+}
+
 .story-blocks {
     margin-top: 20px;
 }
@@ -164,6 +168,13 @@
 }
 
 .heading4 {
+    background: -webkit-linear-gradient(left, rgba(138,92,46,1), rgba(138,92,46,0)); 
+    background: -o-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
+    background: -moz-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
+    background: linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0));
+}
+
+.heading5 {
     background: -webkit-linear-gradient(left, rgba(138,92,46,1), rgba(138,92,46,0)); 
     background: -o-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
     background: -moz-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
