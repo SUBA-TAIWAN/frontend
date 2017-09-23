@@ -139,46 +139,46 @@
     margin-bottom: 8px;
 }
 
-.heading0 {
-    background: -webkit-linear-gradient(left, rgba(168,0,0,1), rgba(255,0,0,0)); 
-    background: -o-linear-gradient(right, rgba(168,0,0,1), rgba(255,0,0,0));
-    background: -moz-linear-gradient(right, rgba(168,0,0,1), rgba(255,0,0,0));
-    background: linear-gradient(to right, rgba(168,0,0,1), rgba(255,0,0,0));
+.story-block .heading0 {
+    background: -webkit-linear-gradient(to right, rgba(178,93,137,1), rgba(178,93,137,0)); 
+    background: -o-linear-gradient(to right, rgba(178,93,137,1), rgba(178,93,137,0));
+    background: -moz-linear-gradient(to right, rgba(178,93,137,1), rgba(178,93,137,0));
+    background: linear-gradient(to right, rgba(178,93,137,1), rgba(178,93,137,0));
 }
 
-.heading1 {
-    background: -webkit-linear-gradient(left, rgba(188,86,0,1), rgba(188,86,0,0)); 
-    background: -o-linear-gradient(right, rgba(188,86,0,1), rgba(188,86,0,0));
-    background: -moz-linear-gradient(right, rgba(188,86,0,1), rgba(188,86,0,0));
+.story-block .heading1 {
+    background: -webkit-linear-gradient(to right, rgba(188,86,0,1), rgba(188,86,0,0)); 
+    background: -o-linear-gradient(to right, rgba(188,86,0,1), rgba(188,86,0,0));
+    background: -moz-linear-gradient(to right, rgba(188,86,0,1), rgba(188,86,0,0));
     background: linear-gradient(to right, rgba(188,86,0,1), rgba(188,86,0,0));
 }
 
-.heading2 {
-    background: -webkit-linear-gradient(left, rgba(36,107,36,1), rgba(36,107,36,0)); 
-    background: -o-linear-gradient(right, rgba(36,107,36,1), rgba(36,107,36,0));
-    background: -moz-linear-gradient(right, rgba(36,107,36,1), rgba(36,107,36,0));
+.story-block .heading2 {
+    background: -webkit-linear-gradient(to right, rgba(36,107,36,1), rgba(36,107,36,0)); 
+    background: -o-linear-gradient(to right, rgba(36,107,36,1), rgba(36,107,36,0));
+    background: -moz-linear-gradient(to right, rgba(36,107,36,1), rgba(36,107,36,0));
     background: linear-gradient(to right, rgba(36,107,36,1), rgba(36,107,36,0));
 }
 
-.heading3 {
-    background: -webkit-linear-gradient(left, rgba(0,41,122,1), rgba(0,41,122,0)); 
-    background: -o-linear-gradient(right, rgba(0,41,122,1), rgba(0,41,122,0));
-    background: -moz-linear-gradient(right, rgba(0,41,122,1), rgba(0,41,122,0));
+.story-block .heading3 {
+    background: -webkit-linear-gradient(to right, rgba(0,41,122,1), rgba(0,41,122,0)); 
+    background: -o-linear-gradient(to right, rgba(0,41,122,1), rgba(0,41,122,0));
+    background: -moz-linear-gradient(to right, rgba(0,41,122,1), rgba(0,41,122,0));
     background: linear-gradient(to right, rgba(0,41,122,1), rgba(0,41,122,0));
 }
 
-.heading4 {
-    background: -webkit-linear-gradient(left, rgba(138,92,46,1), rgba(138,92,46,0)); 
-    background: -o-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
-    background: -moz-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
+.story-block .heading4 {
+    background: -webkit-linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0)); 
+    background: -o-linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0));
+    background: -moz-linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0));
     background: linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0));
 }
 
-.heading5 {
-    background: -webkit-linear-gradient(left, rgba(138,92,46,1), rgba(138,92,46,0)); 
-    background: -o-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
-    background: -moz-linear-gradient(right, rgba(138,92,46,1), rgba(138,92,46,0));
-    background: linear-gradient(to right, rgba(138,92,46,1), rgba(138,92,46,0));
+.story-block .heading5 {
+    background: -webkit-linear-gradient(to right, rgba(248,96,111,1), rgba(248,96,111,0)); 
+    background: -o-linear-gradient(to right, rgba(248,96,111,1), rgba(248,96,111,0));
+    background: -moz-linear-gradient(to right, rgba(248,96,111,1), rgba(248,96,111,0));
+    background: linear-gradient(to right, rgba(248,96,111,1), rgba(248,96,111,0));
 }
 </style>
 
@@ -188,21 +188,32 @@
   <div class="story-blocks" v-show="isStoryBlocksFetched">
     <div class="story-content">
       <div class="story-block" v-bind:class="storyblock.class" v-for="storyblock in storyblocks">
-        <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
-          <h6 class="block_title" v-bind:class="'heading' + storyblock.order"><span><b v-bind:class="storyblock.icon"></b>{{storyblock.title}}</span></h6>
-        </router-link>
-        <ul>
-          <li v-for="story in storyblock.list">
-            <router-link v-bind:to="{name: 'news', params: {title: story.title}}" v-bind:aria-label="story.title">
-              {{story.stitle}}
-            </router-link>
-          </li>
-        </ul>
-        <span class="show-more">
+        <template v-if="!empty(storyblock.list)">
           <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
-            更多
+            <h6 class="block_title" v-bind:class="'heading' + storyblock.order"><span><b v-bind:class="storyblock.icon"></b>{{storyblock.title}}</span></h6>
           </router-link>
-        </span>
+          <ul>
+            <li v-for="story in storyblock.list">
+              <router-link v-bind:to="{name: 'news', params: {title: story.title}}" v-bind:aria-label="story.title">
+                {{story.stitle}}
+              </router-link>
+            </li>
+          </ul>
+          <span class="show-more">
+            <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
+              更多
+            </router-link>
+          </span>
+        </template>
+
+        <template v-else>
+          <router-link v-bind:to="{name: 'category', params: {title: storyblock.title}}" v-bind:aria-label="storyblock.title">
+            <h6 class="block_title" v-bind:class="'heading' + storyblock.order"><span><b v-bind:class="storyblock.icon"></b>{{storyblock.title}}</span></h6>
+          </router-link>
+          <div>
+            <h6 class="text-center">目前無資料</h6>
+          </div>
+        </template>
       </div>
     </div>
     <hr>
@@ -241,6 +252,15 @@ export default {
       }, (error) => {
         this.$emit('handleError', error !== undefined)
       })
+    },
+    empty (data) {
+      if (data === undefined || data === null) {
+        return true
+      }
+      if (data.length !== undefined) {
+        return data.length <= 0
+      }
+      return false
     }
   },
   watch: {
