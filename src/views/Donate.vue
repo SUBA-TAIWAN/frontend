@@ -216,6 +216,9 @@ export default {
       }, {
         name: '東吳企管 EMBA 聯誼會專款',
         value: '1'
+      }, {
+        name: '東吳企管五十週年系慶餐會費用',
+        value: '2'
       }],
       order: {
         merID: '',
