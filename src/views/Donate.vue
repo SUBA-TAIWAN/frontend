@@ -334,7 +334,7 @@ export default {
       if (isEmpty(this.donation.purpose)) {
         errFor.purpose = '請選擇捐助款項用途'
       } else {
-        if (!isNumeric(this.donation.purpose) || (this.donation.purpose < 0) || (this.donation.purpose > 1)) {
+        if (!isNumeric(this.donation.purpose) || (this.donation.purpose < 0) || (this.donation.purpose > 2)) {
           errFor.purpose = '捐助款項用途選擇錯誤'
         } else {
           errFor.purpose = null
