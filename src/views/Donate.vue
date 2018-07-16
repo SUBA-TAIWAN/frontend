@@ -260,7 +260,8 @@ export default {
     validate: function () {
       var errFor = {}
       var count = 0
-      var reg = /[`~!@#$%^&\\*()_\-+=|{\]["';:/}?><.,]/g
+      var reg = /[`~!@#$%^&\\*()_\-+=|{\]["';:\/}?><.,]/g
+      var addrReg = /[`~!@#$%^&\\*()_+=|{\]["';:\/}?><.,]/g
 
       if (isEmpty(this.donation.firstName)) {
         errFor.firstName = '請輸入姓'
@@ -308,7 +309,7 @@ export default {
           errFor.cellPhone = null
         }
       }
-      if (!isEmpty(this.donation.address) && matches(this.donation.address, reg)) {
+      if (!isEmpty(this.donation.address) && matches(this.donation.address, addrReg)) {
         errFor.address = '地址含有其他字元'
       } else {
         errFor.address = null
@@ -316,7 +317,7 @@ export default {
       if (isEmpty(this.donation.invoiceAddress)) {
         errFor.invoiceAddress = '請輸入收據寄送地址'
       } else {
-        if (matches(this.donation.invoiceAddress, reg)) {
+        if (matches(this.donation.invoiceAddress, addrReg)) {
           errFor.invoiceAddress = '收據寄送地址含有其他字元'
         } else {
           errFor.invoiceAddress = null
