@@ -49,7 +49,7 @@
     </button>
   </div>
         
-  <div class="collapse navbar-wrapper" v-bind:class="{'collapse': isCollapse}" v-on:click="toggleCollapse">
+  <div class="navbar-wrapper" v-bind:class="{'collapse': isCollapse}" v-on:click="toggleCollapse">
       <div class="navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li v-for="mainitem in mainitems">
