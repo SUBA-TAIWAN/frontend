@@ -13,7 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.19.0",
     "jssorslider": "^1.0.3",
     "validator": "^8.0.0",
     "vue": "^2.3.3",
