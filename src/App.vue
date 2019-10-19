@@ -22,7 +22,8 @@ export default {
     SubaTopnav, SubaSidebar, SubaFooter, SubaContent
   },
   created () {
-    console.log('%c%s', 'color:#68250A;font-size:72px;font-weight:900;', config.welcome);
+    console.log('%c%s', 'color:#68250A;font-size:60px;font-weight:900;', config.welcome);
+    console.log('%c%s', 'color:#68250A;font-size:30px;font-weight:900;', config.migrate);
   }
 }
 </script>
